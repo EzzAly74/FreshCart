@@ -1,0 +1,215 @@
+<div class="layer w-100 h-100">
+  <img src="assets/images/freshcart-logo.svg" alt="" class="img-fluid" />
+  <i class="fa-solid fa-spinner fa-spin spinner"></i>
+</div>
+<ng-template #emptyCart>
+  <div
+    class="d-flex my-3 justify-content-center row-gap-3 flex-column align-items-center"
+  >
+    <img src="assets/images/emptyCart.jpg" width="300" alt="" />
+    <h3 class="text-muted text-black-50 fw-bold">Your Cart is Empty !</h3>
+    <button routerLink="/home" class="btn btn-success py-2 px-3">
+      <i class="fa-solid fa-shopping-cart px-2"></i>RETURN TO SHOP
+    </button>
+  </div>
+</ng-template>
+
+<div *ngIf="cartFlag; else emptyCart" class="cart">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <div
+          *ngFor="let item of cartData.products; let i = index"
+          class="bg-white"
+        >
+          <div class="row my-3 align-items-center">
+            <div class="col-md-2 p-0 m-0">
+              <img [src]="item.product.imageCover" alt="" class="img-fluid" />
+            </div>
+            <div class="col-md-4 text-center py-2">
+              <h4 class="h6 fw-bold">{{ twoWords(item.product.title) }}</h4>
+            </div>
+            <div class="col-md-6">
+              <div
+                class="d-flex align-items-center justify-content-around py-4"
+              >
+                <div
+                  class="quantity d-flex column-gap-2 align-items-center bg-body-tertiary"
+                >
+                  <div
+                    (click)="
+                      updateCount(
+                        item.product._id,
+                        item.count - 1,
+                        item.count,
+                        i
+                      )
+                    "
+                    class="minus btn btn-outline-danger fw-bold"
+                  >
+                    <i class="minusIcon fa-solid fa-minus"></i>
+                  </div>
+
+                  <div class="count px-1">{{ item.count }}</div>
+                  <div
+                    (click)="
+                      updateCount(
+                        item.product._id,
+                        item.count + 1,
+                        item.count,
+                        i
+                      )
+                    "
+                    class="plus btn btn-outline-success"
+                  >
+                    <i class="plusIcon fa-solid fa-plus"></i>
+                  </div>
+                </div>
+                <div class="price text-muted">
+                  <span>{{ item.price | currency : "EGP " }}</span>
+                </div>
+                <div
+                  (click)="deleteItem(item.product._id, i)"
+                  class="remove btn btn-outline-danger"
+                >
+                  <i
+                    class="removeIcon fa-solid fa-trash-can cursor-pointer"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 align-self-start my-3 position-sticky">
+        <div class="pay bg-white p-3 ms-2">
+          <h6 class="fw-bold fs-6">Payment Details</h6>
+          <hr />
+          <div class="flex-column">
+            <div
+              class="fs-6 d-flex justify-content-between align-items-baseline column-gap-1"
+            >
+              <p class="text-muted">Number of Items :</p>
+              <span class="amount text-dark">{{ res }}</span>
+            </div>
+            <div
+              class="totalPrice fs-6 d-flex justify-content-between align-items-baseline column-gap-1"
+            >
+              <p class="text-muted">Total Price :</p>
+              <span class="price text-main"
+                >{{ cartData.totalCartPrice | currency : "EGP " }}
+              </span>
+            </div>
+          </div>
+          <hr />
+          <div class="payMethod mx-auto mb-3">
+            <h6 class="fw-bold fs-6">Payment Method</h6>
+            <hr />
+            <div class="d-flex column-gap-2 justify-content-center">
+              <button
+                [routerLink]="['/checkout', cartId]"
+                class="pay btn btn-success w-100 d-flex align-items-center justify-content-center column-gap-3"
+              >
+                <svg
+                  style="width: 28px"
+                  version="1.0"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32.000000pt"
+                  height="32.000000pt"
+                  viewBox="0 0 32.000000 32.000000"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <g
+                    transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)"
+                    fill="#fff"
+                    stroke="none"
+                  >
+                    <path
+                      d="M117 279 c-26 -18 -62 -35 -80 -38 l-32 -7 -3 -109 c-2 -80 1 -111
+10 -117 7 -4 72 -8 145 -8 116 0 133 2 141 18 15 28 22 114 13 157 -7 32 -9
+35 -10 13 -1 -27 -3 -28 -51 -28 l-50 0 0 -40 0 -40 50 0 c45 0 50 -2 50 -22
+0 -46 -8 -49 -151 -46 l-134 3 0 105 0 105 142 0 c77 0 139 3 136 8 -2 4 -11
+7 -18 7 -8 0 -18 12 -21 26 -5 19 -12 24 -25 21 -10 -3 -23 1 -30 9 -16 20
+-28 18 -82 -17z m73 7 c0 -8 -15 -18 -32 -22 -18 -4 -28 -9 -23 -11 6 -2 32 3
+58 11 26 8 47 13 47 11 0 -2 3 -11 6 -20 6 -14 -3 -16 -79 -13 l-86 3 42 27
+c48 30 67 34 67 14z m115 -166 c0 -23 -4 -25 -47 -28 -48 -3 -48 -3 -48 28 0
+31 0 31 48 28 43 -3 47 -5 47 -28z"
+                    />
+                    <path
+                      d="M235 130 c-4 -6 -3 -16 3 -22 6 -6 12 -6 17 2 4 6 3 16 -3 22 -6 6
+-12 6 -17 -2z"
+                    />
+                  </g>
+                </svg>
+                <span class="pt-1 fw-bold">Pay Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="removeCart my-3 d-flex justify-content-center">
+          <button
+            *ngIf="!isLoading"
+            (click)="removeCart()"
+            class="btn btn-danger w-100 mx-2 ms-3 d-flex justify-content-center column-gap-3 align-items-center"
+          >
+            <svg
+              style="width: 32px"
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32.000000pt"
+              height="32.000000pt"
+              viewBox="0 0 64.000000 64.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g
+                transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
+                fill="#fff"
+                stroke="none"
+              >
+                <path
+                  d="M430 623 c-19 -10 -45 -34 -58 -53 -20 -29 -23 -44 -20 -88 4 -45 10
+         -59 41 -89 30 -31 44 -37 89 -40 84 -6 144 42 155 125 15 110 -108 196 -207
+         145z m120 -28 c62 -32 79 -121 34 -174 -46 -55 -124 -59 -173 -10 -95 95 19
+         246 139 184z"
+                />
+                <path
+                  d="M430 548 c0 -6 10 -22 22 -35 l21 -23 -23 -25 c-31 -32 -17 -46 15
+         -15 l25 23 23 -21 c24 -22 47 -29 47 -14 0 5 -11 19 -25 32 l-25 24 27 28 c35
+         36 21 50 -15 15 l-28 -27 -24 25 c-25 27 -40 32 -40 13z"
+                />
+                <path
+                  d="M7 583 c-15 -15 -5 -22 35 -25 l42 -3 23 -115 c13 -63 28 -139 34
+         -169 7 -37 21 -64 39 -83 l28 -28 177 0 c137 0 176 3 173 13 -4 9 -52 13 -181
+         17 -96 3 -177 7 -180 10 -9 11 -27 49 -27 59 0 8 63 11 193 11 175 0 196 2
+         210 18 18 20 23 52 8 52 -5 0 -16 -11 -25 -25 l-17 -25 -187 2 -187 3 -12 49
+         c-7 27 -15 69 -19 93 l-6 43 97 0 c73 0 96 3 93 13 -3 8 -35 13 -101 15 -96 3
+         -97 3 -103 30 -11 51 -12 52 -57 52 -24 0 -47 -3 -50 -7z"
+                />
+                <path
+                  d="M180 110 c-11 -11 -20 -30 -20 -43 0 -29 39 -67 68 -67 31 0 62 35
+         62 68 0 57 -69 83 -110 42z m80 -30 c13 -25 -10 -53 -41 -48 -30 4 -39 46 -14
+         64 20 15 42 8 55 -16z"
+                />
+                <path
+                  d="M447 112 c-36 -40 -6 -112 46 -112 29 0 67 39 67 68 0 52 -79 82
+         -113 44z m81 -50 c-2 -21 -9 -28 -30 -30 -39 -5 -56 30 -28 58 28 28 63 11 58
+         -28z"
+                />
+              </g>
+            </svg>
+
+            <span class="text-white fw-bold">CLEAR CART</span>
+          </button>
+          <button
+            *ngIf="isLoading"
+            (click)="removeCart()"
+            class="btn btn-danger w-100 ms-3 d-flex justify-content-center column-gap-3 p-3 align-items-center"
+          >
+            <i class="fa-spinner fa-spin fa-solid"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

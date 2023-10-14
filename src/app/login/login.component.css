@@ -1,0 +1,25 @@
+.alert {
+  transition: 0.25s ease-in-out;
+}
+#buttonContainer {
+  width: fit-content;
+  margin-left: auto;
+}
+.alreadyExist {
+  background-color: #f8d7da;
+  padding: 15px;
+  text-align: center;
+  color: darkred;
+  display: none;
+}
+@media (max-width: 991px) {
+  #buttonContainer {
+    flex-direction: column !important;
+  }
+  .haveNotAccount {
+    order: 0 !important;
+  }
+}
+label {
+  font-weight: bold;
+}

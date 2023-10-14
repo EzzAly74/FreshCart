@@ -1,0 +1,8 @@
+.brandd {
+  border: 1px solid #ddd !important ;
+  border-radius: 5%;
+  transition: 0.3s ease-in-out;
+}
+.brandd:hover {
+  box-shadow: -1px 1px 3px 2px #458543;
+}

@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,700&display=swap");
+.cart {
+  background-color: #f8f9fa;
+}
+.cart img {
+  border-right: 15px solid #f8f9fa;
+}
+.childRow,
+.rating {
+  background-color: #fff !important;
+}
+.btn {
+  border: none !important;
+  border-radius: 0% !important;
+}
+.count,
+.price,
+.amount {
+  font-family: "Crimson Text", serif;
+}
+.quantity,
+.cash,
+.online {
+  box-shadow: 2px 2px 8px #ccc;
+}
+.position-sticky {
+  top: 15px;
+}
+button span {
+  font-size: 14px;
+}

@@ -1,0 +1,145 @@
+<nav class="navbar navbar-expand-lg bg-main-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="home"
+      ><img src="assets/images/freshcart-logo.svg" class="img-fluid" alt=""
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul
+        *ngIf="isLogin"
+        class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center column-gap-2"
+      >
+        <li class="nav-item">
+          <a
+            class="nav-link active text-muted p-2"
+            aria-current="page"
+            routerLink="home"
+            routerLinkActive="routerLinkActive"
+            >Home</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active text-muted p-2"
+            aria-current="page"
+            routerLink="wishlist"
+            routerLinkActive="routerLinkActive"
+            >Wishlist</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active text-muted p-2"
+            aria-current="page"
+            routerLink="products"
+            routerLinkActive="routerLinkActive"
+            >Products</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active text-muted p-2"
+            aria-current="page"
+            routerLink="categories"
+            routerLinkActive="routerLinkActive"
+            >Categories</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active text-muted p-2"
+            aria-current="page"
+            routerLink="brands"
+            routerLinkActive="routerLinkActive"
+            >Brands</a
+          >
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+        <div class="p-3 icons d-flex gap-3">
+          <a href="https://www.instagram.com/" target="_blank"
+            ><i class="fa-brands fa-instagram cursor-pointer"></i
+          ></a>
+          <a href="https://www.facebook.com/" target="_blank">
+            <i class="fa-brands fa-facebook cursor-pointer"></i
+          ></a>
+          <a href="https://www.tiktok.com/" target="_blank"
+            ><i class="fa-brands fa-tiktok cursor-pointer"></i
+          ></a>
+          <a href="https://twitter.com/" target="_blank"
+            ><i class="fa-brands fa-twitter cursor-pointer"></i
+          ></a>
+          <a href="https://www.linkedin.com/" target="_blank">
+            <i class="fa-brands fa-linkedin cursor-pointer"></i
+          ></a>
+          <a href="https://www.youtube.com/" target="_blank">
+            <i class="fa-brands fa-youtube cursor-pointer"></i
+          ></a>
+        </div>
+        <li *ngIf="!isLogin" class="nav-item">
+          <a
+            class="nav-link active text-muted"
+            aria-current="page"
+            routerLink="login"
+          >
+            <span class="btn btn-outline-success"
+              >Login <i class="fa-solid fa-user"></i></span
+          ></a>
+        </li>
+        <li *ngIf="!isLogin" class="nav-item">
+          <a
+            class="nav-link active text-muted"
+            aria-current="page"
+            routerLink="register"
+          >
+            <span class="btn btn-outline-primary"
+              >Register <i class="fa-solid fa-user-plus"></i></span
+          ></a>
+        </li>
+
+        <li class="px-3" *ngIf="isLogin">
+          <span class="username text-main"
+            ><i class="fa-solid fa-user px-1"></i> {{ userName }}</span
+          >
+        </li>
+        <li *ngIf="isLogin" class="nav-item me-3 my-2">
+          <a
+            class="nav-link active text-muted p-2"
+            aria-current="page"
+            routerLink="cart"
+          >
+            <div class="cartIconContainer position-relative">
+              <div class="noItems position-absolute p-1 bg-orange text-white">
+                {{ totalItems }}
+              </div>
+              <i class="fa-solid fa-cart-shopping fa-xl text-custom"></i></div
+          ></a>
+        </li>
+
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link active text-muted" aria-current="page">
+            <span
+              (click)="logout()"
+              class="btn btn-outline-danger cursor-pointer"
+              >Logout <i class="fa-solid fa-right-to-bracket"></i></span
+          ></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

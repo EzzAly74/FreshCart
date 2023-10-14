@@ -1,0 +1,52 @@
+.catName {
+  font-size: 14px;
+}
+.title {
+  font-size: 16px;
+}
+.price {
+  font-size: 12px;
+  font-weight: bold;
+}
+.sendSuccess,
+.addedWishlist,
+.removedWishlist {
+  background-color: #d1e7dd;
+  color: #0c4129;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  display: none;
+  z-index: 5654;
+}
+.bg-heart {
+  color: #dc3545;
+  /* transition: 2s ease-in-out; */
+}
+.carousel {
+  width: 75% !important;
+}
+.static {
+  width: 25% !important;
+}
+.imgCategory {
+  height: 200px !important ;
+}
+
+@media (max-width: 991px) {
+  .carousel {
+    width: 60% !important;
+  }
+  .static {
+    width: 40% !important;
+  }
+  .imgCategory {
+    height: 350px !important ;
+  }
+  .product {
+    width: 90% !important;
+    margin-inline: auto;
+  }
+}

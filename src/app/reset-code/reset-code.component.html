@@ -1,0 +1,55 @@
+<div class="w-75 mx-auto">
+  <form
+    [formGroup]="resetCodeForm"
+    (ngSubmit)="submitResetCodeForm(resetCodeForm)"
+  >
+    <div class="py-2">
+      <h2 class="my-3">Reset Code</h2>
+
+      <label for="reset">
+        <i class="fa-solid fa-rotate-right"></i> Code :</label
+      >
+      <input
+        type="text"
+        id="reset"
+        class="form-control my-2"
+        formControlName="resetCode"
+      />
+
+      <div
+        *ngIf="
+          resetCodeForm.get('resetCode')?.errors &&
+          resetCodeForm.get('resetCode')?.touched
+        "
+        class="alert alert-danger text-danger my-1"
+      >
+        <p *ngIf="resetCodeForm.get('resetCode')?.errors?.['required']">
+          <i class="fa-solid fa-circle-exclamation pe-1"></i> Reset Code is
+          Required Field
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="buttonContainer"
+      [class.notAllowed]="resetCodeForm.invalid"
+      class="d-flex align-items-center"
+    >
+      <button
+        *ngIf="!isLoading"
+        [disabled]="resetCodeForm.invalid"
+        type="submit"
+        class="btn bg-main text-white d-block ms-auto my-3"
+      >
+        Verify Code <i class="fa-solid fa-paper-plane"></i>
+      </button>
+
+      <button
+        *ngIf="isLoading"
+        class="btn bg-main text-white d-block ms-auto my-3"
+      >
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      </button>
+    </div>
+  </form>
+</div>

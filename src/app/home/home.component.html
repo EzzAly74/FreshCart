@@ -1,0 +1,105 @@
+<div class="layer w-100 h-100">
+  <img src="assets/images/freshcart-logo.svg" alt="" class="img-fluid" />
+  <i class="fa-solid fa-spinner fa-spin spinner"></i>
+</div>
+
+<div class="container my-3">
+  <div class="slider d-flex my-5">
+    <div class="carousel">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let image of images">
+          <ng-template carouselSlide>
+            <img
+              [src]="image"
+              class="w-100"
+              style="height: 350px; width: 350px"
+            />
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+
+    <div class="static d-flex flex-column">
+      <img
+        src="assets/images/grocery-banner.png"
+        class="w-100"
+        alt=""
+        style="height: 175px"
+      />
+      <img
+        src="assets/images/grocery-banner-2.jpeg"
+        class="w-100"
+        style="height: 175px"
+        alt=""
+      />
+    </div>
+  </div>
+
+  <div class="categories my-5">
+    <owl-carousel-o [options]="customOptions2">
+      <ng-container *ngFor="let category of allCategories">
+        <ng-template carouselSlide>
+          <div class="category">
+            <img [src]="category.image" class="imgCategory w-100" />
+            <h3 class="text-center py-2">{{ category.name }}</h3>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+
+  <div class="row row-gap-3">
+    <div *ngFor="let product of allProducts; let i = index" class="col-md-2">
+      <div class="product overflow-hidden p-2">
+        <div class="prod">
+          <div
+            [routerLink]="['/productDetails', product._id]"
+            class="imgContainer cursor-pointer pb-4"
+          >
+            <img [src]="product.imageCover" alt="" class="w-100" />
+          </div>
+          <div class="disc pt-2">
+            <div
+              class="disc-wish d-flex justify-content-between align-items-center"
+            >
+              <div class="disc">
+                <span class="text-main fw-bold catName">{{
+                  product.category.name
+                }}</span>
+                <p class="text-muted title">{{ twoWords(product.title) }}</p>
+              </div>
+              <div class="wish">
+                <!-- <i class="fa-regular fa-2xl fa-heart pb-4"></i> -->
+                <i
+                  *ngIf="!wishlistArr.includes(product._id)"
+                  (click)="addToWishlist(product._id, i)"
+                  class="wishlistIcon wishlistImg fa-regular fa-heart fa-xl pb-4 cursor-pointer"
+                ></i>
+
+                <i
+                  *ngIf="wishlistArr.includes(product._id)"
+                  (click)="removeFromWishlist(product._id, i)"
+                  class="wishlistIcon removeFromWishlist fa-solid fa-heart fa-xl bg-heart pb-4 cursor-pointer"
+                ></i>
+              </div>
+            </div>
+
+            <div class="price_rating d-flex justify-content-between">
+              <div class="price">{{ product.price | currency : "EGP " }}</div>
+              <div class="price text-muted">
+                <i class="fa-solid fa-star rating-color"> </i>
+                {{ rating(product.ratingsAverage) }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="addToCart(product._id, i)"
+          class="addToCart btn btn-success text-white d-block w-100 mt-3 mx-auto"
+        >
+          Add to Cart <i class="addToCartIcon fa-solid fa-cart-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

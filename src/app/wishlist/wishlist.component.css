@@ -1,0 +1,30 @@
+.wishlist {
+  background-color: #f8f9fa;
+}
+img {
+  border-right: 15px solid #f8f9fa;
+}
+
+.cart {
+  text-align: end;
+}
+
+@media (max-width: 991px) {
+  img {
+    border-right: none;
+  }
+}
+.para {
+  width: fit-content !important;
+}
+.cartIcon {
+  transition: 0.3s ease-in-out;
+  color: #7f7f7f;
+}
+.cartIcon:hover {
+  color: #000;
+}
+.emptyWishlistText {
+  color: #fc7a7a !important;
+  letter-spacing: 2px;
+}

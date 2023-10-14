@@ -1,0 +1,15 @@
+.specprod:hover {
+  box-shadow: var(--shadow);
+  border: solid 1px var(--main-color);
+}
+.sendSuccess {
+  background-color: #d1e7dd;
+  color: #0c4129;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  display: none;
+  z-index: 5654;
+}

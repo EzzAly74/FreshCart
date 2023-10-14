@@ -1,0 +1,75 @@
+<div class="container w-75 mx-auto">
+  <form [formGroup]="checkoutForm">
+    <div class="my-3">
+      <label for="details">
+        <i class="fa-solid fa-circle-info"></i> Details :</label
+      >
+      <input
+        type="text"
+        id="details"
+        class="form-control my-2"
+        formControlName="details"
+      />
+    </div>
+
+    <div class="my-3">
+      <label for="phone"> <i class="fa-solid fa-phone"></i> Phone :</label>
+      <input
+        type="tel"
+        id="phone"
+        class="form-control my-2"
+        formControlName="phone"
+      />
+    </div>
+
+    <div class="my-3">
+      <label for="city"> <i class="fa-solid fa-city"></i> City :</label>
+      <input
+        type="text"
+        id="city"
+        class="form-control my-2"
+        formControlName="city"
+      />
+    </div>
+    <div
+      class="payment my-5 d-flex row-gap-3 column-gap-2 justify-content-center"
+    >
+      <button
+        *ngIf="!isLoadOnline"
+        type="submit"
+        (click)="submitCheckoutFormOnline(checkoutForm)"
+        class="online btn btn-primary d-flex align-items-center justify-content-center column-gap-2"
+      >
+        <span class="fw-bold">Online Payment</span>
+        <img src="assets/images/visa.png" class="border-0" alt="" />
+      </button>
+      <button
+        *ngIf="isLoadOnline"
+        class="online btn btn-primary d-flex align-items-center justify-content-center column-gap-2"
+      >
+        <i class="fa-solid fa-spinner fa-spin text-white"></i>
+      </button>
+
+      <button
+        *ngIf="!isLoadCash"
+        type="submit"
+        (click)="submitCheckoutFormCash(checkoutForm)"
+        class="cash btn btn-success d-flex align-items-center justify-content-center column-gap-2"
+      >
+        <span class="fw-bold">Cash Payment</span>
+        <img
+          src="assets/images/money.png"
+          alt=""
+          style="width: 32px"
+          class="border-0"
+        />
+      </button>
+      <button
+        *ngIf="isLoadCash"
+        class="cash btn btn-success d-flex align-items-center justify-content-center column-gap-2"
+      >
+        <i class="fa-solid fa-spinner fa-spin text-white"></i>
+      </button>
+    </div>
+  </form>
+</div>

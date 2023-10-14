@@ -1,0 +1,16 @@
+.alert {
+  transition: 0.25s ease-in-out;
+}
+#buttonContainer {
+  width: fit-content;
+  margin-left: auto;
+}
+
+label {
+  font-weight: bold;
+}
+@media (max-width: 991px) {
+  .alreadyHaveAccount {
+    font-size: 10px !important;
+  }
+}

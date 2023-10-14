@@ -1,0 +1,14 @@
+<div class="layer w-100 h-100">
+  <img src="assets/images/freshcart-logo.svg" alt="" class="img-fluid" />
+  <i class="fa-solid fa-spinner fa-spin spinner"></i>
+</div>
+
+<div class="container">
+  <div class="row row-gap-4 my-5">
+    <div class="col-md-3" *ngFor="let brand of allBrands; let i = index">
+      <div class="brandd p-3">
+        <img [src]="brand.image" class="w-100" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

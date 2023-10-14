@@ -1,0 +1,47 @@
+<div class="layer w-100 h-100">
+  <img src="assets/images/freshcart-logo.svg" alt="" class="img-fluid" />
+  <i class="fa-solid fa-spinner fa-spin spinner"></i>
+</div>
+
+<div class="container my-5">
+  <div class="row align-items-center justify-content-center row-gap-5">
+    <div class="col-md-4">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let image of productData.images">
+          <ng-template carouselSlide>
+            <img [src]="image" class="img-fluid w-100" />
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+
+    <div class="col-md-8 specprod p-3">
+      <h2 class="h4">{{ productData.title }}</h2>
+      <span class="text-muted font-sm">{{ productData.description }}</span>
+      <h6 class="my-4 fw-bolder fs-6 text-main">
+        {{ productData.category.name }}
+      </h6>
+
+      <div class="price_rating d-flex justify-content-between">
+        <div class="price">{{ productData.price | currency : "EGP " }}</div>
+        <div class="price text-muted me-3">
+          <i class="fa-solid fa-star rating-color"> </i>
+          {{ rating(productData.ratingsAverage) }}
+        </div>
+      </div>
+      <button
+        *ngIf="!load"
+        (click)="addToCart(productData._id)"
+        class="btn btn-success text-white d-block w-100 mt-3 mx-auto"
+      >
+        Add to Cart <i class="fa-solid fa-cart-plus"></i>
+      </button>
+      <button
+        *ngIf="load"
+        class="btn btn-success text-white d-block w-100 mt-3 mx-auto"
+      >
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      </button>
+    </div>
+  </div>
+</div>

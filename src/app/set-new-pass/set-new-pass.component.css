@@ -1,0 +1,18 @@
+#buttonContainer {
+  width: fit-content;
+  margin-left: auto;
+}
+.alreadyExist {
+  background-color: #f8d7da;
+  padding: 15px;
+  text-align: center;
+  color: darkred;
+  display: none;
+}
+.sendSuccess {
+  background-color: #d1e7dd;
+  color: #0c4129;
+  padding: 15px;
+  text-align: center;
+  display: none;
+}

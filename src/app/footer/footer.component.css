@@ -1,0 +1,17 @@
+.foot img {
+  width: 80px;
+  height: 40px;
+}
+@media (max-width: 992px) {
+  .foot {
+    flex-direction: column !important;
+    row-gap: 50px !important;
+  }
+  .foot span {
+    font-size: 10px;
+  }
+}
+.share {
+  width: 250px;
+  font-size: 12px;
+}

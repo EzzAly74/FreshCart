@@ -1,0 +1,80 @@
+<div class="layer w-100 h-100">
+  <img src="assets/images/freshcart-logo.svg" alt="" class="img-fluid" />
+  <i class="fa-solid fa-spinner fa-spin spinner"></i>
+</div>
+
+<div class="container my-3">
+  <div class="inputContainer w-75 mx-auto d-flex align-items-center">
+    <div
+      class="iconContainer d-flex justify-content-center align-items-center p-2"
+    >
+      <i class="fa-solid fa-search p-2"></i>
+    </div>
+    <input
+      [(ngModel)]="searchRes"
+      type="text"
+      placeholder="search . . ."
+      class="form-control shadow-none my-4"
+    />
+  </div>
+  <div class="row row-gap-3">
+    <div
+      *ngFor="
+        let product of filterProducts(allProducts, searchRes);
+        let i = index
+      "
+      class="col-md-2"
+    >
+      <div class="product overflow-hidden p-2">
+        <div class="prod">
+          <div
+            [routerLink]="['/productDetails', product._id]"
+            class="imgContainer cursor-pointer pb-4"
+          >
+            <img [src]="product.imageCover" alt="" class="img-fluid" />
+          </div>
+          <div class="disc pt-2">
+            <div
+              class="disc-wish d-flex justify-content-between align-items-center"
+            >
+              <div class="disc">
+                <span class="text-main fw-bold catName">{{
+                  product.category.name
+                }}</span>
+                <p class="text-muted title">{{ twoWords(product.title) }}</p>
+              </div>
+              <div class="wish">
+                <!-- <i class="fa-regular fa-2xl fa-heart pb-4"></i> -->
+                <i
+                  *ngIf="!wishlistArr.includes(product._id)"
+                  (click)="addToWishlist(product._id, i)"
+                  class="wishlistIcon wishlistImg fa-regular fa-heart fa-xl pb-4 cursor-pointer"
+                ></i>
+
+                <i
+                  *ngIf="wishlistArr.includes(product._id)"
+                  (click)="removeFromWishlist(product._id, i)"
+                  class="wishlistIcon removeFromWishlist fa-solid fa-heart fa-xl bg-heart pb-4 cursor-pointer"
+                ></i>
+              </div>
+            </div>
+
+            <div class="price_rating d-flex justify-content-between">
+              <div class="price">{{ product.price | currency : "EGP " }}</div>
+              <div class="price text-muted">
+                <i class="fa-solid fa-star rating-color"> </i>
+                {{ rating(product.ratingsAverage) }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="addToCart(product._id, i)"
+          class="addToCart btn btn-success text-white d-block w-100 mt-3 mx-auto"
+        >
+          Add to Cart <i class="addToCartIcon fa-solid fa-cart-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
